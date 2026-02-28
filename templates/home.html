@@ -28,6 +28,11 @@
     </form>
 
     <h3>Translated Text:</h3>
-    <p>{{ res }}</p>
+    <p id="translatedText">{{ res }}</p>
+
+    <button onclick="copyText()">Copy</button>
+    <button onclick="speakText()">🔊 Speak</button>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>
