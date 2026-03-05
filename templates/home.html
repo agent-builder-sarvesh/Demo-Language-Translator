@@ -1,38 +1,50 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Translator App</title>
-  </head>
-  <body>
-    <h2>Simple Translator</h2>
-    <p>Date: {{ datetoday2 }}</p>
+<head>
+  <meta charset="UTF-8">
+  <title>Translator App</title>
 
-    <form action="/translate" method="POST">
-      <textarea
-        name="sourcetext"
-        rows="5"
-        cols="40"
-        placeholder="Enter text here"
-      ></textarea>
-      <br /><br />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-      <select name="languages">
-        {% for name, code in languages.items() %}
-        <option value="{{ code }}">{{ name.title() }}</option>
-        {% endfor %}
-      </select>
+<body>
 
-      <br /><br />
-      <button type="submit">Translate</button>
-    </form>
+  <h2>Simple Translator</h2>
+  <p>Date: {{ datetoday2 }}</p>
 
-    <h3>Translated Text:</h3>
-    <p id="translatedText">{{ res }}</p>
+  <form action="/translate" method="POST">
 
-    <button onclick="copyText()">Copy</button>
-    <button onclick="speakText()">🔊 Speak</button>
+    <textarea
+      name="sourcetext"
+      rows="5"
+      cols="40"
+      placeholder="Enter text here"
+    ></textarea>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-  </body>
+    <br><br>
+
+    <select name="languages">
+      {% for name, code in languages.items() %}
+      <option value="{{ code }}">{{ name.title() }}</option>
+      {% endfor %}
+    </select>
+
+    <br><br>
+
+    <button type="submit">Translate</button>
+
+  </form>
+
+  <h3>Translated Text:</h3>
+
+  <p id="translatedText" class="result-box">
+    {{ res }}
+  </p>
+
+  <button onclick="copyText()">Copy</button>
+  <button onclick="speakText()">🔊 Speak</button>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
 </html>
